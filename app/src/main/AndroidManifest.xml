@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidCW1">
         <activity
-            android:name=".PopUpWindow"
-            android:theme="@style/Theme.AndroidCW1.popMe"
+            android:name=".GameActivity"
             android:exported="false" />
+        <activity
+            android:name=".PopUpWindow"
+            android:exported="false"
+            android:theme="@style/Theme.AndroidCW1.popMe" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
