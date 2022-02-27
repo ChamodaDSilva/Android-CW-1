@@ -8,25 +8,49 @@ import java.util.*
 
 
 class GameActivity : AppCompatActivity() {
-    var expressionAnswer=0
+    //variables use both expressions
+    var expressionAnswer=0.0
     var expression=""
+
+    var answer1=0.0
+    var answer2=0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        var txtExpression1=findViewById<TextView>(R.id.txtExpression1)
-        var txtExpression2=findViewById<TextView>(R.id.txtExpression2)
+        var txtExpression1=findViewById<TextView>(R.id.txtExpression1)//left expression
+        var txtExpression2=findViewById<TextView>(R.id.txtExpression2)//right expression
+        var txtCorrectness=findViewById<TextView>(R.id.txtCorrectness)//correct or incorrect indicate
 
-        var btnGreater=findViewById<Button>(R.id.btnGreater)
+        var btnGreater=findViewById<Button>(R.id.btnGreater)//buttons
         var btnEqual=findViewById<Button>(R.id.btnEqual)
         var btnLess=findViewById<Button>(R.id.btnLess)
 
-        startGame(txtExpression1,txtExpression2)
+        startGame(txtExpression1,txtExpression2)//starting game first time
 
         btnGreater.setOnClickListener{
-            startGame(txtExpression1,txtExpression2)
+            if (answer1>answer2){
+                txtCorrectness.text="Correct"
+            }else{
+                txtCorrectness.text="Incorrect"
+            }
         }
+        btnEqual.setOnClickListener{
+            if (answer1==answer2){
+                txtCorrectness.text="Correct"
+            }else{
+                txtCorrectness.text="Incorrect"
+            }
+        }
+        btnLess.setOnClickListener{
+            if (answer1<answer2){
+                txtCorrectness.text="Correct"
+            }else{
+                txtCorrectness.text="Incorrect"
+            }
+        }
+
 
 
     }
@@ -38,20 +62,20 @@ class GameActivity : AppCompatActivity() {
         val firtNum2 = rand.nextInt(20) + 1
 
 
-        //testing
-        expressionAnswer = firtNum1
+
+        expressionAnswer = firtNum1.toDouble()
 
         //generating first expression
         genarate(firtNum1.toString(), numOfOperations1)
-        var answer1=expressionAnswer
-        txtException1.text=expression
+        answer1=expressionAnswer
+        txtException1.text=expression+",\n$answer1"
 
         //generating second expression
         expression=""
-        expressionAnswer=firtNum2
+        expressionAnswer=firtNum2.toDouble()
         genarate(firtNum2.toString(), numOfOperations2)
-        var answer2=expressionAnswer
-        txtException2.text=expression
+        answer2=expressionAnswer
+        txtException2.text=expression+",\n$answer2"
     }
     fun genarate(firstNum:String,numOfOperations: Int){
         var operations= mutableListOf<String>("+","-","*","/")
@@ -60,7 +84,7 @@ class GameActivity : AppCompatActivity() {
         var operationIndex=rand.nextInt(4)
         var secondNum=rand.nextInt(20)+1
 
-        /////////////
+        //about the answer of arithmetic operation
         if(operationIndex==0){
             expressionAnswer=expressionAnswer+secondNum;
         }else if(operationIndex==1){
