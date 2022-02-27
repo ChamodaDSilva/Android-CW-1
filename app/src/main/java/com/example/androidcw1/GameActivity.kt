@@ -1,5 +1,6 @@
 package com.example.androidcw1
 
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -32,22 +33,28 @@ class GameActivity : AppCompatActivity() {
         btnGreater.setOnClickListener{
             if (answer1>answer2){
                 txtCorrectness.text="Correct"
+                txtCorrectness.setTextColor(Color.parseColor("#00FF00"))
             }else{
                 txtCorrectness.text="Incorrect"
+                txtCorrectness.setTextColor(Color.parseColor("#FF0000"))
             }
         }
         btnEqual.setOnClickListener{
             if (answer1==answer2){
                 txtCorrectness.text="Correct"
+                txtCorrectness.setTextColor(Color.parseColor("#00FF00"))
             }else{
                 txtCorrectness.text="Incorrect"
+                txtCorrectness.setTextColor(Color.parseColor("#FF0000"))
             }
         }
         btnLess.setOnClickListener{
             if (answer1<answer2){
                 txtCorrectness.text="Correct"
+                txtCorrectness.setTextColor(Color.parseColor("#00FF00"))
             }else{
                 txtCorrectness.text="Incorrect"
+                txtCorrectness.setTextColor(Color.parseColor("#FF0000"))
             }
         }
 
