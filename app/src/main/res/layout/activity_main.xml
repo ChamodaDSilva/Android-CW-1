@@ -27,7 +27,8 @@
         app:layout_constraintHorizontal_bias="0.315"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.512" />
+        app:layout_constraintVertical_bias="0.512"
+        android:background="@drawable/circlebackgroundbutton"/>
 
     <Button
         android:id="@+id/btnAbout"
@@ -39,6 +40,7 @@
         app:layout_constraintHorizontal_bias="0.728"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.512" />
+        app:layout_constraintVertical_bias="0.512"
+        android:background="@drawable/circlebackgroundbutton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
