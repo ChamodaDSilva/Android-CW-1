@@ -28,6 +28,9 @@ class GameActivity : AppCompatActivity() {
         var btnEqual=findViewById<Button>(R.id.btnEqual)
         var btnLess=findViewById<Button>(R.id.btnLess)
 
+        var btnNext=findViewById<Button>(R.id.btnNext)
+
+
         startGame(txtExpression1,txtExpression2)//starting game first time
 
         btnGreater.setOnClickListener{
@@ -57,6 +60,10 @@ class GameActivity : AppCompatActivity() {
                 txtCorrectness.setTextColor(Color.parseColor("#FF0000"))
             }
         }
+        btnNext.setOnClickListener{
+            txtCorrectness.text=""
+            startGame(txtExpression1,txtExpression2)
+        }
 
 
 
@@ -65,22 +72,23 @@ class GameActivity : AppCompatActivity() {
         val rand = Random()
         val numOfOperations1 = rand.nextInt(4) + 1
         val numOfOperations2 = rand.nextInt(4) + 1
-        val firtNum1 = rand.nextInt(20) + 1
-        val firtNum2 = rand.nextInt(20) + 1
+        val firstNum1 = rand.nextInt(20) + 1
+        val firstNum2 = rand.nextInt(20) + 1
 
 
 
-        expressionAnswer = firtNum1.toDouble()
+
 
         //generating first expression
-        genarate(firtNum1.toString(), numOfOperations1)
+        expressionAnswer = firstNum1.toDouble()
+        genarate(firstNum1.toString(), numOfOperations1)
         answer1=expressionAnswer
         txtException1.text=expression+",\n$answer1"
 
         //generating second expression
         expression=""
-        expressionAnswer=firtNum2.toDouble()
-        genarate(firtNum2.toString(), numOfOperations2)
+        expressionAnswer=firstNum2.toDouble()
+        genarate(firstNum2.toString(), numOfOperations2)
         answer2=expressionAnswer
         txtException2.text=expression+",\n$answer2"
     }
@@ -113,5 +121,8 @@ class GameActivity : AppCompatActivity() {
 
 
 
+    }
+    fun isWhole(value: Double):Boolean {
+        return value - value.toInt() == 0.0
     }
 }
