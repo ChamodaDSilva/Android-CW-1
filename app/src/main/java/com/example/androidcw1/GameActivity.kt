@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
-
 class GameActivity : AppCompatActivity() {
     //variables use both expressions
     var expressionAnswer=0.0
@@ -65,18 +64,14 @@ class GameActivity : AppCompatActivity() {
             startGame(txtExpression1,txtExpression2)
         }
 
-
-
     }
+
     fun startGame(txtException1: TextView,txtException2: TextView){
         val rand = Random()
         val numOfOperations1 = rand.nextInt(4) + 1
         val numOfOperations2 = rand.nextInt(4) + 1
         val firstNum1 = rand.nextInt(20) + 1
         val firstNum2 = rand.nextInt(20) + 1
-
-
-
 
 
         //generating first expression
@@ -99,19 +94,23 @@ class GameActivity : AppCompatActivity() {
         var operationIndex=rand.nextInt(4)
         var secondNum=rand.nextInt(20)+1
 
+        while (!inRange(expressionAnswer,secondNum.toDouble(), operations[operationIndex])) {//making answer always in range 100 to 0
+            operationIndex=rand.nextInt(4)
+            secondNum=rand.nextInt(20)+1
+        }
         //about the answer of arithmetic operation
-        if(operationIndex==0){
-            expressionAnswer=expressionAnswer+secondNum;
-        }else if(operationIndex==1){
-            expressionAnswer=expressionAnswer-secondNum;
-        }else if(operationIndex==2){
-            expressionAnswer=expressionAnswer*secondNum;
-        }else if(operationIndex==3){//for division
+        if (operationIndex == 0) {
+            expressionAnswer = expressionAnswer + secondNum;
+        } else if (operationIndex == 1) {
+            expressionAnswer = expressionAnswer - secondNum;
+        } else if (operationIndex == 2) {
+            expressionAnswer = expressionAnswer * secondNum;
+        } else if (operationIndex == 3) {//for division
             //to get integers only
-            while(!isWhole(expressionAnswer/secondNum)){
-                secondNum=rand.nextInt(20)+1
+            while (!isWhole(expressionAnswer / secondNum)) {
+                secondNum = rand.nextInt(20) + 1
             }
-            expressionAnswer=expressionAnswer/secondNum;
+            expressionAnswer = expressionAnswer / secondNum;
             //
         }
         //////
@@ -124,10 +123,23 @@ class GameActivity : AppCompatActivity() {
             genarate("($term)",newNumOfOperations);
         }
 
-
-
     }
     fun isWhole(value: Double):Boolean {
+        //to check number is a whole number
         return value - value.toInt() == 0.0
+    }
+    fun inRange(value1: Double, value2: Double, operation:String): Boolean {
+        //to check a operation is an range of 0 to 100 including 0 and 100
+        if(operation=="+"){
+           return value1+value2 <= 100.0 && value1+value2 >=0.0
+        }else if(operation=="-"){
+            return value1-value2 <= 100.0 && value1-value2 >=0.0
+        }else if(operation=="*"){
+            return value1*value2 <= 100.0 && value1*value2 >=0.0
+        }else if(operation=="/"){
+            return value1/value2 <= 100.0 && value1/value2 >=0.0
+        }else{
+            return false
+        }
     }
 }
