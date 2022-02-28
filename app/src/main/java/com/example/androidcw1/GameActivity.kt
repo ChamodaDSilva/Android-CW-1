@@ -1,13 +1,18 @@
 package com.example.androidcw1
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
 class GameActivity : AppCompatActivity() {
+    var counter = 50//counter time
+    var numberOfCorrectAnswers=0
+    var numberOfIncorrectAnswers=0
     //variables use both expressions
     var expressionAnswer=0.0
     var expression=""
@@ -18,6 +23,8 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        startTimeCounter()
 
         var txtExpression1=findViewById<TextView>(R.id.txtExpression1)//left expression
         var txtExpression2=findViewById<TextView>(R.id.txtExpression2)//right expression
@@ -30,33 +37,43 @@ class GameActivity : AppCompatActivity() {
         var btnNext=findViewById<Button>(R.id.btnNext)
 
 
+
+
         startGame(txtExpression1,txtExpression2)//starting game first time
+
+
 
         btnGreater.setOnClickListener{
             if (answer1>answer2){
                 txtCorrectness.text="Correct"
                 txtCorrectness.setTextColor(Color.parseColor("#00FF00"))
+                numberOfCorrectAnswers++
             }else{
                 txtCorrectness.text="Incorrect"
                 txtCorrectness.setTextColor(Color.parseColor("#FF0000"))
+                numberOfIncorrectAnswers++
             }
         }
         btnEqual.setOnClickListener{
             if (answer1==answer2){
                 txtCorrectness.text="Correct"
                 txtCorrectness.setTextColor(Color.parseColor("#00FF00"))
+                numberOfCorrectAnswers++
             }else{
                 txtCorrectness.text="Incorrect"
                 txtCorrectness.setTextColor(Color.parseColor("#FF0000"))
+                numberOfIncorrectAnswers++
             }
         }
         btnLess.setOnClickListener{
             if (answer1<answer2){
                 txtCorrectness.text="Correct"
                 txtCorrectness.setTextColor(Color.parseColor("#00FF00"))
+                numberOfCorrectAnswers++
             }else{
                 txtCorrectness.text="Incorrect"
                 txtCorrectness.setTextColor(Color.parseColor("#FF0000"))
+                numberOfIncorrectAnswers++
             }
         }
         btnNext.setOnClickListener{
@@ -141,5 +158,22 @@ class GameActivity : AppCompatActivity() {
         }else{
             return false
         }
+    }
+    fun startTimeCounter() {
+        val countTime: TextView = findViewById(R.id.txtTimer)
+        var scoreWindow= Intent(this,ScoreActivity::class.java)
+        object : CountDownTimer(50000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                countTime.text = counter.toString()
+                counter--
+            }
+            override fun onFinish() {
+                var extras = Bundle()
+                extras.putInt("correct",numberOfCorrectAnswers)
+                extras.putInt("incorrect",numberOfIncorrectAnswers)
+                scoreWindow.putExtras(extras)
+                startActivity(scoreWindow)
+            }
+        }.start()
     }
 }
