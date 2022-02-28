@@ -106,8 +106,13 @@ class GameActivity : AppCompatActivity() {
             expressionAnswer=expressionAnswer-secondNum;
         }else if(operationIndex==2){
             expressionAnswer=expressionAnswer*secondNum;
-        }else if(operationIndex==3){
+        }else if(operationIndex==3){//for division
+            //to get integers only
+            while(!isWhole(expressionAnswer/secondNum)){
+                secondNum=rand.nextInt(20)+1
+            }
             expressionAnswer=expressionAnswer/secondNum;
+            //
         }
         //////
 
