@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
@@ -37,10 +38,7 @@ class GameActivity : AppCompatActivity() {
         var btnNext=findViewById<Button>(R.id.btnNext)
 
 
-
-
         startGame(txtExpression1,txtExpression2)//starting game first time
-
 
 
         btnGreater.setOnClickListener{
@@ -48,6 +46,7 @@ class GameActivity : AppCompatActivity() {
                 txtCorrectness.text="Correct"
                 txtCorrectness.setTextColor(Color.parseColor("#00FF00"))
                 numberOfCorrectAnswers++
+                bonusTime()
             }else{
                 txtCorrectness.text="Incorrect"
                 txtCorrectness.setTextColor(Color.parseColor("#FF0000"))
@@ -59,6 +58,7 @@ class GameActivity : AppCompatActivity() {
                 txtCorrectness.text="Correct"
                 txtCorrectness.setTextColor(Color.parseColor("#00FF00"))
                 numberOfCorrectAnswers++
+                bonusTime()
             }else{
                 txtCorrectness.text="Incorrect"
                 txtCorrectness.setTextColor(Color.parseColor("#FF0000"))
@@ -70,6 +70,7 @@ class GameActivity : AppCompatActivity() {
                 txtCorrectness.text="Correct"
                 txtCorrectness.setTextColor(Color.parseColor("#00FF00"))
                 numberOfCorrectAnswers++
+                bonusTime()
             }else{
                 txtCorrectness.text="Incorrect"
                 txtCorrectness.setTextColor(Color.parseColor("#FF0000"))
@@ -160,11 +161,16 @@ class GameActivity : AppCompatActivity() {
         }
     }
     fun startTimeCounter() {
-        val countTime: TextView = findViewById(R.id.txtTimer)
+        var countTime: TextView = findViewById(R.id.txtTimer)
         var scoreWindow= Intent(this,ScoreActivity::class.java)
-        object : CountDownTimer(50000, 1000) {
+        object : CountDownTimer(1000000, 1000) {//50000 should be
+
             override fun onTick(millisUntilFinished: Long) {
                 countTime.text = counter.toString()
+                if (counter==0){
+                    cancel()
+                    onFinish()
+                }
                 counter--
             }
             override fun onFinish() {
@@ -174,6 +180,14 @@ class GameActivity : AppCompatActivity() {
                 scoreWindow.putExtras(extras)
                 startActivity(scoreWindow)
             }
+
         }.start()
+    }
+    fun bonusTime(){
+        if(numberOfCorrectAnswers%5==0){
+            var alertBonus=Toast.makeText(applicationContext,"10 seconds added",Toast.LENGTH_SHORT)
+            alertBonus.show()
+            counter+=10
+        }
     }
 }
