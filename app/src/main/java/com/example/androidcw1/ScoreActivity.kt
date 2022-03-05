@@ -13,6 +13,8 @@ class ScoreActivity : AppCompatActivity() {
 
         var txtCorrectNum =findViewById<TextView>(R.id.txtCorrectNum)
         var textIncorrectNum =findViewById<TextView>(R.id.textIncorrectNum)
+        var textQuestionsNum= findViewById<TextView>(R.id.textQuestionsNum)
+        var textFeedback=findViewById<TextView>(R.id.textFeedback)
 
         var intent=getIntent()
         var extras=intent.getExtras()
@@ -20,8 +22,9 @@ class ScoreActivity : AppCompatActivity() {
         var correctnum= extras!!.getInt("correct").toString()
         var incorrectnum= extras!!.getInt("incorrect").toString()
 
-        txtCorrectNum.text ="correct - "+correctnum
-        textIncorrectNum.text = "incorrect- "+incorrectnum
+        txtCorrectNum.text =correctnum
+        textIncorrectNum.text =incorrectnum
+        textQuestionsNum.text=(correctnum.toInt()+incorrectnum.toInt()).toString()
     }
 
     override fun onBackPressed() {

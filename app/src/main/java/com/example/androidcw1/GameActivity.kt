@@ -95,8 +95,6 @@ class GameActivity : AppCompatActivity() {
             }, 1500)
         }
 
-
-
     }
 
     fun startGame(txtException1: TextView,txtException2: TextView){
