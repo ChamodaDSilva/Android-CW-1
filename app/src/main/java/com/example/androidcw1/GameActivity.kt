@@ -10,7 +10,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
-import kotlin.concurrent.schedule
 
 class GameActivity : AppCompatActivity() {
     var counter = 50//counter time

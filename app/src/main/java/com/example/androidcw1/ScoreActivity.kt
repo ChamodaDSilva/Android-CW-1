@@ -25,6 +25,16 @@ class ScoreActivity : AppCompatActivity() {
         txtCorrectNum.text =correctnum
         textIncorrectNum.text =incorrectnum
         textQuestionsNum.text=(correctnum.toInt()+incorrectnum.toInt()).toString()
+
+        if(correctnum.toInt()<4){
+            textFeedback.text="Try to do more correct answers!"
+        }else if (incorrectnum.toInt()>4){
+            textFeedback.text="To much incorrect answers!"
+        }else if(incorrectnum.toInt()+correctnum.toInt()<5){
+            textFeedback.text="Try to do more questions answers!"
+        }else{
+            textFeedback.text="Good progress!"
+        }
     }
 
     override fun onBackPressed() {

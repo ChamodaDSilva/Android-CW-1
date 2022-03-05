@@ -22,7 +22,9 @@
         android:id="@+id/txtExpression1"
         android:layout_width="158dp"
         android:layout_height="81dp"
+        android:fontFamily="@font/annie_use_your_telescope"
         android:gravity="center"
+
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,6 +38,7 @@
         android:id="@+id/txtExpression2"
         android:layout_width="171dp"
         android:layout_height="81dp"
+        android:fontFamily="@font/annie_use_your_telescope"
         android:gravity="center"
         android:text="TextView"
         android:textSize="20sp"
@@ -94,6 +97,7 @@
         android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:fontFamily="@font/aclonica"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
