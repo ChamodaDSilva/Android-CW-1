@@ -4,11 +4,13 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
+import kotlin.concurrent.schedule
 
 class GameActivity : AppCompatActivity() {
     var counter = 50//counter time
@@ -35,7 +37,7 @@ class GameActivity : AppCompatActivity() {
         var btnEqual=findViewById<Button>(R.id.btnEqual)
         var btnLess=findViewById<Button>(R.id.btnLess)
 
-        var btnNext=findViewById<Button>(R.id.btnNext)
+
 
 
         startGame(txtExpression1,txtExpression2)//starting game first time
@@ -44,43 +46,56 @@ class GameActivity : AppCompatActivity() {
         btnGreater.setOnClickListener{
             if (answer1>answer2){
                 txtCorrectness.text="Correct"
-                txtCorrectness.setTextColor(Color.parseColor("#00FF00"))
+                txtCorrectness.setTextColor(Color.parseColor("#caffbf"))
                 numberOfCorrectAnswers++
                 bonusTime()
             }else{
                 txtCorrectness.text="Incorrect"
-                txtCorrectness.setTextColor(Color.parseColor("#FF0000"))
+                txtCorrectness.setTextColor(Color.parseColor("#ffc09f"))
                 numberOfIncorrectAnswers++
             }
+            Handler().postDelayed({
+                txtCorrectness.text=""
+                startGame(txtExpression1,txtExpression2)
+
+            }, 1500)
         }
         btnEqual.setOnClickListener{
             if (answer1==answer2){
                 txtCorrectness.text="Correct"
-                txtCorrectness.setTextColor(Color.parseColor("#00FF00"))
+                txtCorrectness.setTextColor(Color.parseColor("#caffbf"))
                 numberOfCorrectAnswers++
                 bonusTime()
             }else{
                 txtCorrectness.text="Incorrect"
-                txtCorrectness.setTextColor(Color.parseColor("#FF0000"))
+                txtCorrectness.setTextColor(Color.parseColor("#ffc09f"))
                 numberOfIncorrectAnswers++
             }
+            Handler().postDelayed({
+                txtCorrectness.text=""
+                startGame(txtExpression1,txtExpression2)
+
+            }, 1500)
         }
         btnLess.setOnClickListener{
             if (answer1<answer2){
                 txtCorrectness.text="Correct"
-                txtCorrectness.setTextColor(Color.parseColor("#00FF00"))
+                txtCorrectness.setTextColor(Color.parseColor("#caffbf"))
                 numberOfCorrectAnswers++
                 bonusTime()
             }else{
                 txtCorrectness.text="Incorrect"
-                txtCorrectness.setTextColor(Color.parseColor("#FF0000"))
+                txtCorrectness.setTextColor(Color.parseColor("#ffc09f"))
                 numberOfIncorrectAnswers++
             }
+            Handler().postDelayed({
+                txtCorrectness.text=""
+                startGame(txtExpression1,txtExpression2)
+
+            }, 1500)
         }
-        btnNext.setOnClickListener{
-            txtCorrectness.text=""
-            startGame(txtExpression1,txtExpression2)
-        }
+
+
 
     }
 
@@ -167,7 +182,7 @@ class GameActivity : AppCompatActivity() {
 
             override fun onTick(millisUntilFinished: Long) {
                 countTime.text = counter.toString()
-                if (counter==0){
+                if (counter<=0){
                     cancel()
                     onFinish()
                 }
