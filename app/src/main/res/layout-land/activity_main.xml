@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circlebackgroundbutton"
-        android:text="New Game"
+        android:text="@string/new_game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.109"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circlebackgroundbutton"
-        android:text="About"
+        android:text="@string/about"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.118"
@@ -36,11 +36,12 @@
         android:id="@+id/imgMain"
         android:layout_width="412dp"
         android:layout_height="303dp"
-        android:layout_marginStart="400dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="348dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/main_page_img" />
+        app:srcCompat="@drawable/main_page_img"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/upperWaveMain"
@@ -50,14 +51,15 @@
         android:layout_marginBottom="112dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/waveup" />
+        app:srcCompat="@drawable/waveup"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/headingMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/aclonica"
-        android:text="Welcome to PYCAL"
+        android:text="@string/welcome_to_pycal"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -74,7 +76,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="116dp"
         android:fontFamily="@font/aclonica"
-        android:text="To develop all calulation skills of the world"
+        android:text="@string/to_develop_all_calulation_skills_of_the_world"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

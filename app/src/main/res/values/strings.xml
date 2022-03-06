@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndroidCW1</string>
+    <string name="new_game">New Game</string>
+    <string name="about">About</string>
+    <string name="welcome_to_pycal">Welcome to PYCAL</string>
+    <string name="to_develop_all_calulation_skills_of_the_world">To develop all calulation skills of the world</string>
 </resources>

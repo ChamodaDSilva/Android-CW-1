@@ -1,6 +1,7 @@
 package com.example.androidcw1
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -19,12 +20,18 @@ class GameActivity : AppCompatActivity() {
     var expressionAnswer=0.0
     var expression=""
 
+    var expression1=""
+    var expression2=""
+
     var answer1=0.0
     var answer2=0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+        if(savedInstanceState!=null){
+            savedInstanceState.getInt("counter")
+        }
 
         startTimeCounter()
 
@@ -40,6 +47,7 @@ class GameActivity : AppCompatActivity() {
 
 
         startGame(txtExpression1,txtExpression2)//starting game first time
+
 
 
         btnGreater.setOnClickListener{
@@ -94,6 +102,20 @@ class GameActivity : AppCompatActivity() {
             }, 1500)
         }
 
+        if(savedInstanceState!=null){
+            counter=savedInstanceState.getInt("counter")
+            numberOfIncorrectAnswers=savedInstanceState.getInt("numberOfIncorrectAnswers")
+            numberOfCorrectAnswers=savedInstanceState.getInt("numberOfCorrectAnswers")
+            expression1= savedInstanceState.getString("expression1").toString()
+            expression2= savedInstanceState.getString("expression2").toString()
+            answer1=savedInstanceState.getDouble("answer1")
+            answer2=savedInstanceState.getDouble("answer2")
+
+            txtExpression1.text=expression1+",\n$answer1"
+            txtExpression2.text=expression2+",\n$answer2"
+        }
+
+
     }
 
     fun startGame(txtException1: TextView,txtException2: TextView){
@@ -108,6 +130,7 @@ class GameActivity : AppCompatActivity() {
         expressionAnswer = firstNum1.toDouble()
         genarate(firstNum1.toString(), numOfOperations1)
         answer1=expressionAnswer
+        expression1=expression
         txtException1.text=expression+",\n$answer1"
 
         //generating second expression
@@ -115,6 +138,7 @@ class GameActivity : AppCompatActivity() {
         expressionAnswer=firstNum2.toDouble()
         genarate(firstNum2.toString(), numOfOperations2)
         answer2=expressionAnswer
+        expression2=expression
         txtException2.text=expression+",\n$answer2"
     }
     fun genarate(firstNum:String,numOfOperations: Int){
@@ -201,5 +225,27 @@ class GameActivity : AppCompatActivity() {
             alertBonus.show()
             counter+=10
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("counter",counter)
+        outState.putInt("numberOfCorrectAnswers",numberOfCorrectAnswers)
+        outState.putInt("numberOfIncorrectAnswers",numberOfIncorrectAnswers)
+        outState.putString("expression1",expression1)
+        outState.putString("expression2",expression2)
+        outState.putDouble("answer1",answer1)
+        outState.putDouble("answer2",answer2)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        savedInstanceState.getInt("counter")
+        savedInstanceState.getInt("numberOfCorrectAnswers")
+        savedInstanceState.getInt("numberOfIncorrectAnswers")
+        savedInstanceState.getString("expression1")
+        savedInstanceState.getString("expression2")
+        savedInstanceState.getDouble("answer1")
+        savedInstanceState.getDouble("answer2")
     }
 }

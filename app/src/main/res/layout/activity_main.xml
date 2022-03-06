@@ -36,18 +36,23 @@
         android:id="@+id/imgMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/main_page_img" />
 
     <ImageView
         android:id="@+id/upperWaveMain"
         android:layout_width="419dp"
         android:layout_height="556dp"
-        android:layout_marginBottom="344dp"
+        android:layout_marginBottom="324dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/waveup" />
 
     <TextView
@@ -71,8 +76,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginTop="548dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="164dp"
         android:fontFamily="@font/aclonica"
         android:text="To develop all calulation skills of the world"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

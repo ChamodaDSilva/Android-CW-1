@@ -43,4 +43,5 @@ class ScoreActivity : AppCompatActivity() {
         startActivity(mainWindow)
         finish()
     }
+
 }
