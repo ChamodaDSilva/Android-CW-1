@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidCW1</string>
+    <string name="app_name">PyCal</string>
     <string name="new_game">New Game</string>
     <string name="about">About</string>
     <string name="welcome_to_pycal">Welcome to PYCAL</string>

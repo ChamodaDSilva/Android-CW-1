@@ -1,7 +1,6 @@
 package com.example.androidcw1
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -53,11 +52,11 @@ class GameActivity : AppCompatActivity() {
         btnGreater.setOnClickListener{
             if (answer1>answer2){
                 txtCorrectness.text="Correct"
-                txtCorrectness.setTextColor(Color.parseColor("#caffbf"))
+                txtCorrectness.setTextColor(Color.parseColor("#41cf41"))
                 numberOfCorrectAnswers++
                 bonusTime()
             }else{
-                txtCorrectness.text="Incorrect"
+                txtCorrectness.text="Wrong"
                 txtCorrectness.setTextColor(Color.parseColor("#ffc09f"))
                 numberOfIncorrectAnswers++
             }
@@ -70,11 +69,11 @@ class GameActivity : AppCompatActivity() {
         btnEqual.setOnClickListener{
             if (answer1==answer2){
                 txtCorrectness.text="Correct"
-                txtCorrectness.setTextColor(Color.parseColor("#caffbf"))
+                txtCorrectness.setTextColor(Color.parseColor("#41cf41"))
                 numberOfCorrectAnswers++
                 bonusTime()
             }else{
-                txtCorrectness.text="Incorrect"
+                txtCorrectness.text="Wrong"
                 txtCorrectness.setTextColor(Color.parseColor("#ffc09f"))
                 numberOfIncorrectAnswers++
             }
@@ -87,11 +86,11 @@ class GameActivity : AppCompatActivity() {
         btnLess.setOnClickListener{
             if (answer1<answer2){
                 txtCorrectness.text="Correct"
-                txtCorrectness.setTextColor(Color.parseColor("#caffbf"))
+                txtCorrectness.setTextColor(Color.parseColor("#41cf41"))
                 numberOfCorrectAnswers++
                 bonusTime()
             }else{
-                txtCorrectness.text="Incorrect"
+                txtCorrectness.text="Wrong"
                 txtCorrectness.setTextColor(Color.parseColor("#ffc09f"))
                 numberOfIncorrectAnswers++
             }
@@ -120,8 +119,8 @@ class GameActivity : AppCompatActivity() {
 
     fun startGame(txtException1: TextView,txtException2: TextView){
         val rand = Random()
-        val numOfOperations1 = rand.nextInt(4) + 1
-        val numOfOperations2 = rand.nextInt(4) + 1
+        val numOfOperations1 = rand.nextInt(3) + 1
+        val numOfOperations2 = rand.nextInt(3) + 1
         val firstNum1 = rand.nextInt(20) + 1
         val firstNum2 = rand.nextInt(20) + 1
 
