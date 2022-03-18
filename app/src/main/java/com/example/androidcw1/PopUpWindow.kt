@@ -21,11 +21,11 @@ class PopUpWindow : AppCompatActivity() {
         var width=dm.widthPixels//window width get
         var hight=dm.heightPixels//window height get
 
-        window.setLayout((width*.7).toInt(),(hight*.5).toInt())
+        window.setLayout((width*.7).toInt(),(hight*.5).toInt())//popup window metrics design
         var params=window.attributes
-        params.gravity= Gravity.CENTER
-        params.x=0
-        params.y=-20
-        window.attributes=params
+        params.gravity= Gravity.CENTER//making the popup window to the middle
+        params.x=0//starting position is on conner middle
+        params.y=-20// be little bit low of middle the popup
+        window.attributes=params//setting attributes
     }
 }

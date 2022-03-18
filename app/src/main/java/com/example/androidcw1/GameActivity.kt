@@ -185,12 +185,19 @@ class GameActivity : AppCompatActivity() {
     fun isWhole(value: Double):Boolean {
         /**
          * to check number is a whole number
+         * @param value number want to check it is an whole number
          * @return true for if it is whole number otherwise false.
          */
         return value - value.toInt() == 0.0
     }
     fun inRange(value1: Double, value2: Double, operation:String): Boolean {
-        //to check a operation is an range of 0 to 100 including 0 and 100 before doing the calculations
+        /**
+         * to check a operation is an range of 0 to 100 including 0 and 100 before doing the calculations
+         * @param value1 number1
+         * @param value2 number2
+         * @param operation operation want to check
+         * @return true for if it is in range otherwise false.
+         */
         if(operation=="+"){
            return value1+value2 <= 100.0 && value1+value2 >=0.0
         }else if(operation=="-"){
@@ -212,20 +219,20 @@ class GameActivity : AppCompatActivity() {
         var scoreWindow= Intent(this,ScoreActivity::class.java)
         object : CountDownTimer(1000000, 1000) {//50000 should be
 
-            override fun onTick(millisUntilFinished: Long) {
+            override fun onTick(millisUntilFinished: Long) {//runs when one countdown done
                 countTime.text = counter.toString()
-                if (counter<=0){
+                if (counter<=0){//if the count is minor or equal to 0, stop the counter and runs the finish
                     cancel()
                     onFinish()
                 }
                 counter--
             }
-            override fun onFinish() {
-                var extras = Bundle()
+            override fun onFinish() {//runs when finished the count down
+                var extras = Bundle()//data bundle
                 extras.putInt("correct",numberOfCorrectAnswers)
                 extras.putInt("incorrect",numberOfIncorrectAnswers)
                 scoreWindow.putExtras(extras)
-                startActivity(scoreWindow)
+                startActivity(scoreWindow)//open the scores
             }
 
         }.start()
@@ -242,6 +249,9 @@ class GameActivity : AppCompatActivity() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
+        /**
+         * to save values when pause the program
+         */
         super.onSaveInstanceState(outState)
         outState.putInt("counter",counter)
         outState.putInt("numberOfCorrectAnswers",numberOfCorrectAnswers)
@@ -253,6 +263,9 @@ class GameActivity : AppCompatActivity() {
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        /**
+         * to load values when resume the program
+         */
         super.onRestoreInstanceState(savedInstanceState)
         savedInstanceState.getInt("counter")
         savedInstanceState.getInt("numberOfCorrectAnswers")
