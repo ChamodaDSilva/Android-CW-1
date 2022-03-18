@@ -1,3 +1,7 @@
+/**
+ *
+ * This class for logic of showing scores of the game that player got
+ */
 package com.example.androidcw1
 
 import android.content.Intent
