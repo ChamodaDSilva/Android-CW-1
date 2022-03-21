@@ -5,6 +5,7 @@
  */
 package com.example.androidcw1
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -15,9 +16,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
+import kotlin.concurrent.schedule
 
 class GameActivity : AppCompatActivity() {
-    var counter = 50//counter time at the start
+    var counter = 51//counter time at the start - 51 because what to show 50
     var numberOfCorrectAnswers=0//number of correct answers
     var numberOfIncorrectAnswers=0//number of incorrect answers
     //variables use both expressions
@@ -29,6 +31,7 @@ class GameActivity : AppCompatActivity() {
 
     var answer1=0.0//left side answer
     var answer2=0.0//right side answer
+    var watch = Timer()//timer object for timer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -210,33 +213,50 @@ class GameActivity : AppCompatActivity() {
             return false
         }
     }
+
+
+
+
     fun startTimeCounter() {
         /**
          * to start the timer.
          */
-
         var countTime: TextView = findViewById(R.id.txtTimer)
-        var scoreWindow= Intent(this,ScoreActivity::class.java)
-        object : CountDownTimer(1000000, 1000) {//50000 should be
+        var scoreWindow = Intent(this, ScoreActivity::class.java)
 
-            override fun onTick(millisUntilFinished: Long) {//runs when one countdown done
-                countTime.text = counter.toString()
-                if (counter<=0){//if the count is minor or equal to 0, stop the counter and runs the finish
-                    cancel()
-                    onFinish()
-                }
-                counter--
-            }
-            override fun onFinish() {//runs when finished the count down
-                var extras = Bundle()//data bundle
-                extras.putInt("correct",numberOfCorrectAnswers)
-                extras.putInt("incorrect",numberOfIncorrectAnswers)
-                scoreWindow.putExtras(extras)
-                startActivity(scoreWindow)//open the scores
-            }
+        watch.scheduleAtFixedRate(object : TimerTask() {
+            @SuppressLint("SetTextI18n")
+            override fun run() {
+                counter--//reduce the timer every single second
+                runOnUiThread(Runnable() {
+                    if (counter == 0) {
+                        watch.cancel()
+                        countTime.text = "0"
+                        Timer("Delay", false).schedule(1500) {
+                            var extras = Bundle()//data bundle
+                            extras.putInt("correct", numberOfCorrectAnswers)
+                            extras.putInt("incorrect", numberOfIncorrectAnswers)
+                            scoreWindow.putExtras(extras)
+                            startActivity(scoreWindow)//open the scores
+                        }
+                    }
+                    when {//color setting for timer on the time
+                        counter < 10 -> {
+                            countTime.setTextColor(Color.RED)
+                        }
+                        counter < 20 -> {
+                            countTime.setTextColor(Color.BLUE)
+                        }
+                        else -> {
+                            countTime.setTextColor(Color.DKGRAY)
+                        }
+                    }
 
-        }.start()
+                    countTime.text = counter.toString()//set the timer value
+                })
+            } }, 0, 1000)
     }
+
     fun bonusTime(){
         /**
          * to add bonus time.
@@ -244,7 +264,7 @@ class GameActivity : AppCompatActivity() {
         if(numberOfCorrectAnswers%5==0){
             var alertBonus=Toast.makeText(applicationContext,"10 seconds added",Toast.LENGTH_SHORT)
             alertBonus.show()
-            counter+=10
+            counter+=11//11 added instead 10 because the timer difference
         }
     }
 
@@ -260,6 +280,8 @@ class GameActivity : AppCompatActivity() {
         outState.putString("expression2",expression2)
         outState.putDouble("answer1",answer1)
         outState.putDouble("answer2",answer2)
+        //
+        watch.cancel()
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
